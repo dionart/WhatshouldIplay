@@ -1,0 +1,39 @@
+.formContainer{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  grid-template-columns: 33% 33% 33%;
+  gap: 40px;
+
+  .form{
+    flex-direction: column;
+    display: flex;
+
+    .row{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 8px;
+    }
+
+    .filterTitle{
+      color: var(--gray-300);
+      font-size: 26px;
+    }
+
+    label{
+      font-size: 18px;
+      font-weight: 100;
+      margin-left: 8px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+}
+

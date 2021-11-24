@@ -1,0 +1,26 @@
+.card{
+  width: 300px;
+  height: 400px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-850);
+
+  .cardImage{
+    width:100%;
+  }
+
+  .cardTitle{
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  .cardSubtitle{
+    padding: 0 10px;
+    margin-top: 14px;
+    text-align: justify;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,22 @@
+.contentContainer{
+  width:100%;
+  margin: 0 0 auto;
+  height: 100vh;
+  padding: 0 2rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .mainTitle{
+    font-size: 100px;
+  }
+  .subtitle{
+    font-weight: 100;
+    margin-top: 10px;
+    font-size: 20px;
+  }
+
+}
+
+
