@@ -1,0 +1,23 @@
+.container{
+  flex: 1;
+  width: 100%;
+  background-color: #f3f4f5;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    :nth-child(1){
+      margin-right: 15px;
+    }
+    :nth-child(3){
+      margin-left: 15px;
+    }
+  }
+
+}

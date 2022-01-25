@@ -1,22 +1,81 @@
 .contentContainer{
   width:100%;
   margin: 0 0 auto;
+  position: relative;
   height: 100vh;
   padding: 0 2rem;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 
   .mainTitle{
     font-size: 100px;
   }
+
   .subtitle{
     font-weight: 100;
-    margin-top: 10px;
+    margin-top: 24px;
     font-size: 20px;
+    text-align: center;
   }
 
+  .center{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .gameSubtitle{
+    font-weight: 100;
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .gameName:after{
+    content: '';
+    animation: changetext 100s infinite;
+    color:var(--blue-500); 
+    font-size: 30px; 
+    font-weight: bold;
+    text-align: end;
+  }
+
+  @keyframes changetext { 
+    0% { content: "The Witcher"; }
+    10%{ content: "Minecraft";}
+    20%{ content: "Dark Souls";}
+    30%{ content: "GTA V";}
+    40%{ content: "Valorant";}
+    50%{ content: "Escape from tarkov";}
+    60%{ content: "Hollow Knight";}
+    70%{ content: "League of legends";}
+    80%{ content: "God of War";}
+    90%{ content: "Terraria"}
+    100%{ content: "Celeste";}
+  }
+
+  .gamingGif{
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+  }
+
+  .buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+  }
+}
+
+.absolute{
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 

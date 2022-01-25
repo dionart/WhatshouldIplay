@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-native-vector-icons": "^6.4.10",
     "next": "12.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",

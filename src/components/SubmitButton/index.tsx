@@ -1,6 +1,6 @@
 import React from 'react';
-import {CgSpinnerTwo} from 'react-icons/cg'
 import styles from './styles.module.scss'
+import Image from 'next/image'
 
 // import { Container } from './styles';
 
@@ -13,9 +13,9 @@ const SubmitButton: React.FC<ButtonProps> = ({isLoading = false}) => {
   <div className={styles.buttonContainer}>
     <button className={styles.submitButton} type="button">
       {isLoading ? 
-        (<img className={styles.loader} src="/loading.svg" alt="loading"/>) 
+        (<Image layout='fill' className={styles.loader} src="/loading.svg" alt="loading"/>) 
         : 
-        (<span>let's go!</span>)
+        (<span>lets go!</span>)
       }
     </button>
     

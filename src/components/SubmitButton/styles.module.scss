@@ -1,10 +1,12 @@
 .buttonContainer{
   .loader{
     position: absolute;
+    width: 35px;
+    height: 35px;
   }
   
   button{
-    background-color: #CF7769;
+    background-color: #1F5077;
     height: 3rem;
     position: relative;
     width: 150px;
@@ -19,6 +21,10 @@
   
     &:hover{
       filter: brightness(0.8);
+    }
+
+    span{
+      color: #fff
     }
   
   }
