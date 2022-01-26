@@ -26,6 +26,12 @@
     flex-direction: column;
   }
 
+  .row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+
   .gameSubtitle{
     font-weight: 100;
     margin-top: 10px;

@@ -6,8 +6,53 @@ import styles from './home.module.scss'
 import Filters from '../components/Filters'
 import SubmitButton from '../components/SubmitButton'
 import Footer from '../components/Footer';
+import api from '../services/api';
+import { useEffect, useState } from 'react';
+
+const ratingsMap : any ={
+  'Awful': 0,
+  'Bad': 20,
+  'Meh': 40,
+  'Normal': 60,
+  'Good': 80,
+  'Perfect': 100
+}
+
+const platformMap : any = {
+  'PC': 4,
+  'PS5': 187,
+  'XBOX ONE': 1,
+  'PS4': 18,
+  'XBOX Series X': 186,
+  'Nintendo Switch': 7
+}
 
 const Home: NextPage = () => {
+  const [genre, setGenre] = useState('');
+  const [rating, setRating] = useState(null);
+  const [platform, setPlatform] = useState(null);
+  const [loading, setLoading] = useState(false);
+ 
+  useEffect(() => {
+    console.log('env', String(process.env.NEXT_PUBLIC_API_URL))
+  }, [])
+  
+
+  const Teste = async () => {
+    setLoading(true);
+    console.log(rating);
+    console.log(platform);
+    console.log(genre);
+    try {
+      const res = await api.get(`/games?key=71961a03f67842dc90d6f7504b0fe8e4&genres=${genre.toLowerCase()}&platforms=${platform}&metacritic=${rating}`);
+      console.log('res', res);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
   return (
     <div style={{position: 'relative'}}>
       <div className={styles.absolute}>
@@ -23,17 +68,20 @@ const Home: NextPage = () => {
             <span className={styles.gameSubtitle}>Tired of playing <span className={styles.gameName} > </span> again?</span>
             <p className={styles.subtitle}>Find any game based on simple filters and a huge library at your disposal.</p>
           </div>
-        
-          <Filters/>
+
+          <div className={styles.row}>
+            <Filters onSelect={(s) => setGenre(s)} title='Genre' options={['Action', 'Adventure', 'Shooter', 'Strategy', 'Indie', 'RPG']} />
+            <Filters onSelect={(s) => setRating(ratingsMap[s])} title='Rating' options={['Awful', 'Bad', 'Meh', 'Normal', 'Good', 'Perfect']} />
+            <Filters onSelect={(s) => setPlatform(platformMap[s])} title='Platform' options={['PC', 'PS5', 'XBOX Series X', 'PS4', 'XBOX ONE', 'Nintendo Switch']} />
+          </div>
+
           <div className={styles.buttonContainer}>
-            <SubmitButton isLoading={false}/>
+            <SubmitButton loading={loading} onClick={() => Teste()}/>
           </div>
         </div>
         <div>
           <Image className={styles.gamingGif} src={Gif} alt="this slowpoke moves"/>
         </div>
-        
-       
       </div>
       <Footer/>
     </div>
