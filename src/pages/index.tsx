@@ -9,13 +9,20 @@ import Footer from '../components/Footer';
 import api from '../services/api';
 import { useEffect, useState } from 'react';
 
+function range(start: number, end: number) {
+  var ans = [];
+  for (let i = start; i <= end; i++) {
+      ans.push(i);
+  }
+  return ans;
+}
+
 const ratingsMap : any ={
-  'Awful': 0,
-  'Bad': 20,
-  'Meh': 40,
-  'Normal': 60,
-  'Good': 80,
-  'Perfect': 100
+  'Awful': range(0, 20),
+  'Bad': range(20, 40),
+  'Meh': range(40, 60),
+  'Normal': range(60, 80),
+  'Good': range(80, 100),
 }
 
 const platformMap : any = {
@@ -29,11 +36,14 @@ const platformMap : any = {
 
 const Home: NextPage = () => {
   const [genre, setGenre] = useState('');
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState('');
   const [platform, setPlatform] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [games, setGames] = useState<any>([]);
  
   useEffect(() => {
+    // console.log('aaaa', ratingsMap['Bad'][0])
+    // console.log('aaaa', ratingsMap['Bad'][ratingsMap['Bad'].length -1 ])
     console.log('env', String(process.env.NEXT_PUBLIC_API_URL))
   }, [])
   
@@ -44,8 +54,16 @@ const Home: NextPage = () => {
     console.log(platform);
     console.log(genre);
     try {
-      const res = await api.get(`/games?key=71961a03f67842dc90d6f7504b0fe8e4&genres=${genre.toLowerCase()}&platforms=${platform}&metacritic=${rating}`);
+      const res = await api.get(`/games?key=71961a03f67842dc90d6f7504b0fe8e4&genres=${genre.toLowerCase()}&platforms=${platform}`);
       console.log('res', res);
+      console.log('range', ratingsMap['Normal']);
+      res.data.results.map((item: any)  => {
+        console.log('nota', item.metacritic);
+        if(rating && (item.metacritic > rating[0] && item.metacritic < rating[20])){
+          setGames([...games, item])
+        }
+      })
+      console.log(games);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -71,7 +89,7 @@ const Home: NextPage = () => {
 
           <div className={styles.row}>
             <Filters onSelect={(s) => setGenre(s)} title='Genre' options={['Action', 'Adventure', 'Shooter', 'Strategy', 'Indie', 'RPG']} />
-            <Filters onSelect={(s) => setRating(ratingsMap[s])} title='Rating' options={['Awful', 'Bad', 'Meh', 'Normal', 'Good', 'Perfect']} />
+            <Filters onSelect={(s) => setRating(ratingsMap[s])} title='Rating' options={['Awful', 'Bad', 'Meh', 'Normal', 'Good']} />
             <Filters onSelect={(s) => setPlatform(platformMap[s])} title='Platform' options={['PC', 'PS5', 'XBOX Series X', 'PS4', 'XBOX ONE', 'Nintendo Switch']} />
           </div>
 
